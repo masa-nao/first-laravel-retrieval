@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\HelloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/test', [TestController::class, 'index']);
+Route::get('/test/{text?}', [TestController::class, 'index']);
+Route::get('/hello', [HelloController::class, 'index']);
+
+// Laravel基礎 1-8 問題1
+Route::get('/test/{room}/{id}', function ($room, $id) {
+    return 'roomが ' . $room . ' で、idは ' . $id . ' です';
+});
+
+// Laravel基礎 1-8 問題2
+Route::get('/test/{greeting?}', function ($greeting = 'goodmorning') {
+    return $greeting . ' = おはようございます';
 });
